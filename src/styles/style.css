@@ -4,5 +4,31 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Impact, sans-serif;
 }
 
+
+
+.container {
+    width: 80%;
+    max-width: 1200px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 1em rgba(0 0 0 / 0.3);
+    padding: 2rem;
+}
+
+.container__title {
+    font-size: 2rem;
+    font-weight: 600;
+    width: 60%;
+    text-align: center;
+    margin-inline: auto;
+    border-bottom-style: dashed;
+    border-bottom-width: 2px;
+    border-bottom-color: rgba(0 0 0 / 0.2);
+    padding: 1rem;
+}

@@ -6,6 +6,10 @@ export default class App extends Component {
   }
 
   render() {
-    return <div>Hello World</div>;
+    return (
+      <div className="container">
+        <div className="container__title">CV Application</div>
+      </div>
+    );
   }
 }
