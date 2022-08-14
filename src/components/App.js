@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import General from './General';
+import Education from './Education';
 
 export default class App extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ export default class App extends Component {
       <div className="container">
         <div className="container__title">CV Application</div>
         <General />
+        <Education />
       </div>
     );
   }
