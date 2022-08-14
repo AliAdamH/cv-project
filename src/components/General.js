@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import InputField from './InputField';
 
 export default class General extends Component {
   constructor(props) {
@@ -8,32 +9,17 @@ export default class General extends Component {
     return (
       <section className="section">
         <form className="form">
-          <div className="form__field">
-            <label htmlFor="name">Name: </label>
-            <input
-              type="text"
-              placeholder="Enter your name..."
-              id="name"
-            ></input>
-          </div>
-
-          <div className="form__field">
-            <label htmlFor="email">Email: </label>
-            <input
-              type="email"
-              placeholder="Enter your mail..."
-              id="email"
-            ></input>
-          </div>
-
-          <div className="form__field">
-            <label htmlFor="phone">Phone Number: </label>
-            <input
-              type="tel"
-              placeholder="Enter your phone number..."
-              id="phone"
-            ></input>
-          </div>
+          <InputField name="name" type="text" value="Your potato here.." />
+          <InputField
+            name="email"
+            type="email"
+            value="Enter your mail here..."
+          />
+          <InputField
+            name="phone"
+            type="tel"
+            value="Entre your phone number..."
+          />
 
           <div className="form__submit">
             <button type="submit" className="form__button">
