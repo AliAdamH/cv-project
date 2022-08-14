@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import General from './General';
 
 export default class App extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ export default class App extends Component {
     return (
       <div className="container">
         <div className="container__title">CV Application</div>
+        <General />
       </div>
     );
   }

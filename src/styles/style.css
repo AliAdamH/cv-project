@@ -1,12 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 *,
 *::before,
 *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Impact, sans-serif;
+    font-family: 'Roboto', Impact, sans-serif;
 }
 
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    display: block;
+}
 
 
 .container {
@@ -31,4 +43,56 @@
     border-bottom-width: 2px;
     border-bottom-color: rgba(0 0 0 / 0.2);
     padding: 1rem;
+}
+
+.section {
+    padding: 1rem;
+    border-bottom-style: dashed;
+    border-bottom-width: 2px;
+    border-bottom-color: rgba(0 0 0 / 0.2);
+}
+
+/* 
+.section:not(:last-child) {
+  /* Put the border bottom here.
+}
+*/
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 2rem;
+}
+
+.form__field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+.form__field > label {
+    font-size: 1.3rem;
+}
+
+.form__field > input {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    border: none;
+    border-bottom: 2px solid purple;
+}
+
+.form__button {
+    padding: 0.8rem 1rem;
+    background-color: hsl(185, 86%, 47%);
+    border-radius: 0.5rem;
+    margin-left: auto;
+    transition: opacity 0.3s ease-in-out;
+    font-weight: 600;
+}
+
+.form__button:hover {
+    opacity: 0.6;
 }
