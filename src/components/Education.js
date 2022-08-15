@@ -55,7 +55,7 @@ export default class Education extends Component {
           onValueChange={this.handleChange}
         />
 
-        <div className="form__button">
+        <div className="form__submit">
           <button type="submit" className="form__button">
             Add Education Informations.
           </button>
