@@ -8,7 +8,7 @@ export default class InputField extends Component {
   }
 
   handleValueChange(e) {
-    this.props.onChange(e);
+    this.props.onValueChange(e);
   }
 
   render() {

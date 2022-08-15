@@ -41,21 +41,21 @@ export default class General extends Component {
           type="text"
           hint="Your potato here.."
           value={this.state.name || ''}
-          onChange={this.handleChange}
+          onValueChange={this.handleChange}
         />
         <InputField
           name="email"
           type="email"
           hint="Enter your mail here..."
           value={this.state.email || ''}
-          onChange={this.handleChange}
+          onValueChange={this.handleChange}
         />
         <InputField
           name="phone"
           type="tel"
           hint="Entre your phone number..."
           value={this.state.phone || ''}
-          onChange={this.handleChange}
+          onValueChange={this.handleChange}
         />
 
         <div className="form__submit">
