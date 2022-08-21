@@ -1,30 +1,23 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-export default class InputField extends Component {
-  constructor(props) {
-    super(props);
-
-    this.handleValueChange = this.handleValueChange.bind(this);
+function InputField({ name, type, hint, value, onValueChange }) {
+  function handleValueChange(e) {
+    onValueChange(e);
   }
 
-  handleValueChange(e) {
-    this.props.onValueChange(e);
-  }
-
-  render() {
-    let { name, type, hint, value } = this.props;
-    return (
-      <div className="form__field">
-        <label htmlFor={name}>{name}</label>
-        <input
-          onChange={this.handleValueChange}
-          type={type}
-          id={name}
-          name={name}
-          value={value}
-          placeholder={hint}
-        />
-      </div>
-    );
-  }
+  return (
+    <div className="form__field">
+      <label htmlFor={name}>{name}</label>
+      <input
+        onChange={handleValueChange}
+        type={type}
+        id={name}
+        name={name}
+        value={value}
+        placeholder={hint}
+      />
+    </div>
+  );
 }
+
+export { InputField };
