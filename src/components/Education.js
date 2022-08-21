@@ -1,58 +1,66 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import InputField from './InputField';
 
-export default class Education extends Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = {
-      isBeingEdited: false,
-      school: '',
-      degreeTitle: '',
-      graduationDate: '2022-08-15',
-    };
-  }
+function Education(props) {
+  const [isBeingEdited, setIsBeingEdited] = useState(false);
+  const [school, setSchool] = useState('');
+  const [degreeTitle, setDegreeTitle] = useState('');
+  const [graduationDate, setGraduationDate] = useState('2022-08-15');
 
-  renderOnView() {
+  const changeEditStatus = () => {
+    setIsBeingEdited((previvousState) => !previvousState);
+  };
+
+  const changeSchool = (e) => {
+    setSchool(e.target.value);
+  };
+
+  const changeDegreeTitle = (e) => {
+    setDegreeTitle(e.target.value);
+  };
+
+  const changeGraduationDate = (e) => {
+    setGraduationDate(e.target.value);
+  };
+
+  const renderOnView = () => {
     return (
       <section>
-        <div>{this.state.school}</div>
-        <div>{this.state.degreeTitle}</div>
-        <div>{this.state.graduationDate}</div>
+        <div>{school}</div>
+        <div>{degreeTitle}</div>
+        <div>{graduationDate}</div>
         <div>
-          <button onClick={this.handleEdit}>Edit</button>
+          <button onClick={changeEditStatus}>Edit</button>
         </div>
       </section>
     );
-  }
+  };
 
-  renderOnEdit() {
+  const renderOnEdit = () => {
     return (
-      <form className="form" onSubmit={this.handleSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         <InputField
           name="school"
           type="text"
           hint="Enter the name of the school..."
-          value={this.state.school || ''}
-          onValueChange={this.handleChange}
+          value={school}
+          onValueChange={changeSchool}
         />
 
         <InputField
           name="degreeTitle"
           type="text"
           hint="Enter the title of the degree"
-          value={this.state.degreeTitle || ''}
-          onValueChange={this.handleChange}
+          value={degreeTitle}
+          onValueChange={changeDegreeTitle}
         />
 
         <InputField
           name="graduationDate"
           type="date"
           hint="Enter the date of graduation"
-          value={this.state.graduationDate}
-          onValueChange={this.handleChange}
+          value={graduationDate}
+          onValueChange={changeGraduationDate}
         />
 
         <div className="form__submit">
@@ -62,25 +70,18 @@ export default class Education extends Component {
         </div>
       </form>
     );
-  }
+  };
 
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
-  handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({ isBeingEdited: !this.state.isBeingEdited });
-  }
+    setIsBeingEdited(false);
+  };
 
-  handleEdit() {
-    this.setState({ isBeingEdited: true });
-  }
-
-  render() {
-    const toRender = this.state.isBeingEdited
-      ? this.renderOnEdit()
-      : this.renderOnView();
-    return <section className="section">{toRender}</section>;
-  }
+  return (
+    <section className="section">
+      {isBeingEdited ? renderOnEdit() : renderOnView()}
+    </section>
+  );
 }
+
+export { Education };
