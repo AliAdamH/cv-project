@@ -1,63 +1,79 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import InputField from './InputField';
 
-export default class Experience extends Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = {
-      isBeingEdited: false,
-      company: '',
-      position: '',
-      tasks: '',
-      dateFrom: '2022-08-15',
-      dateTo: '2022-08-15',
-    };
-  }
+function Experience() {
+  const [isBeingEdited, setIsBeingEdited] = useState(false);
+  const [company, setCompany] = useState('');
+  const [position, setPosition] = useState('');
+  const [tasks, setTasks] = useState('');
+  const [dateFrom, setDateFrom] = useState('2022-08-15');
+  const [dateTo, setDateTo] = useState('2022-08-15');
 
-  renderOnEdit() {
+  const changeEditStatus = () => {
+    setIsBeingEdited(true);
+  };
+
+  const changeCompany = (e) => {
+    setCompany(e.target.value);
+  };
+
+  const changePosition = (e) => {
+    setPosition(e.target.value);
+  };
+
+  const changeTasks = (e) => {
+    setTasks(e.target.value);
+  };
+
+  const changeDateFrom = (e) => {
+    setDateFrom(e.target.value);
+  };
+
+  const changeDateTo = (e) => {
+    setDateTo(e.target.value);
+  };
+
+  const renderOnEdit = () => {
     return (
-      <form className="form" onSubmit={this.handleSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         <InputField
           name="company"
           type="text"
           hint="Company name..."
-          value={this.state.company}
-          onValueChange={this.handleChange}
+          value={company}
+          onValueChange={changeCompany}
         />
 
         <InputField
           name="position"
           type="text"
           hint="Position Title..."
-          value={this.state.position}
-          onValueChange={this.handleChange}
+          value={position}
+          onValueChange={changePosition}
         />
 
         <InputField
           name="tasks"
           type="text"
           hint="Tasks..."
-          value={this.state.tasks}
-          onValueChange={this.handleChange}
+          value={tasks}
+          onValueChange={changeTasks}
         />
 
         <InputField
           name="dateFrom"
           type="date"
           hint="Start Date..."
-          value={this.state.dateFrom}
-          onValueChange={this.handleChange}
+          value={dateFrom}
+          onValueChange={changeDateFrom}
         />
 
         <InputField
           name="dateTo"
           type="date"
           hint="End Date..."
-          value={this.state.dateTo}
-          onValueChange={this.handleChange}
+          value={dateTo}
+          onValueChange={changeDateTo}
         />
 
         <div className="form__submit">
@@ -67,40 +83,33 @@ export default class Experience extends Component {
         </div>
       </form>
     );
-  }
+  };
 
-  renderOnView() {
+  const renderOnView = () => {
     return (
       <div>
-        <div>{this.state.company}</div>
-        <div>{this.state.position}</div>
-        <div>{this.state.tasks}</div>
-        <div>{this.state.dateFrom}</div>
-        <div>{this.state.dateTo}</div>
+        <div>{company}</div>
+        <div>{position}</div>
+        <div>{tasks}</div>
+        <div>{dateFrom}</div>
+        <div>{dateTo}</div>
         <div>
-          <button onClick={this.handleEdit}>Edit</button>
+          <button onClick={changeEditStatus}>Edit</button>
         </div>
       </div>
     );
-  }
+  };
 
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
-  handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({ isBeingEdited: !this.state.isBeingEdited });
-  }
+    setIsBeingEdited(false);
+  };
 
-  handleEdit() {
-    this.setState({ isBeingEdited: true });
-  }
-
-  render() {
-    const toRender = this.state.isBeingEdited
-      ? this.renderOnEdit()
-      : this.renderOnView();
-    return <section className="section">{toRender}</section>;
-  }
+  return (
+    <section className="section">
+      {isBeingEdited ? renderOnEdit() : renderOnView()}
+    </section>
+  );
 }
+
+export { Experience };
