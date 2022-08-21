@@ -1,61 +1,64 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import InputField from './InputField';
 
-export default class General extends Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = {
-      isBeingEdited: false,
-      name: '',
-      email: '',
-      phone: '',
-    };
-  }
+function General(props) {
+  const [isBeingEdited, setIsBeingEdited] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
 
-  handleChange(e) {
-    console.log(e.target.value);
-    this.setState({ [e.target.name]: e.target.value });
-  }
+  const changeEditStatus = () => {
+    setIsBeingEdited(true);
+  };
 
-  renderOnView() {
+  const changeName = (e) => {
+    setName(e.target.value);
+  };
+
+  const changeEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const changePhone = (e) => {
+    setPhone(e.target.value);
+  };
+
+  const renderOnView = () => {
     return (
       <section>
-        <div>{this.state.name}</div>
-        <div>{this.state.email}</div>
-        <div>{this.state.phone}</div>
+        <div>{name}</div>
+        <div>{email}</div>
+        <div>{phone}</div>
         <div>
-          <button onClick={this.handleEdit}>Edit</button>
+          <button onClick={changeEditStatus}>Edit</button>
         </div>
       </section>
     );
-  }
+  };
 
-  renderOnEdit() {
+  const renderOnEdit = () => {
     return (
-      <form className="form" onSubmit={this.handleSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         <InputField
           name="name"
           type="text"
           hint="Your potato here.."
-          value={this.state.name || ''}
-          onValueChange={this.handleChange}
+          value={name}
+          onValueChange={changeName}
         />
         <InputField
           name="email"
           type="email"
           hint="Enter your mail here..."
-          value={this.state.email || ''}
-          onValueChange={this.handleChange}
+          value={email}
+          onValueChange={changeEmail}
         />
         <InputField
           name="phone"
           type="tel"
           hint="Entre your phone number..."
-          value={this.state.phone || ''}
-          onValueChange={this.handleChange}
+          value={phone}
+          onValueChange={changePhone}
         />
 
         <div className="form__submit">
@@ -65,21 +68,18 @@ export default class General extends Component {
         </div>
       </form>
     );
-  }
+  };
 
-  handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({ isBeingEdited: !this.state.isBeingEdited });
-  }
+    setIsBeingEdited((previousValue) => !previousValue);
+  };
 
-  handleEdit() {
-    this.setState({ isBeingEdited: true });
-  }
-
-  render() {
-    const toRender = this.state.isBeingEdited
-      ? this.renderOnEdit()
-      : this.renderOnView();
-    return <section className="section">{toRender}</section>;
-  }
+  return (
+    <section className="section">
+      {isBeingEdited ? renderOnEdit() : renderOnView()}
+    </section>
+  );
 }
+
+export { General };
